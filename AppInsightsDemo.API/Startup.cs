@@ -33,6 +33,7 @@ namespace AppInsightsDemo.API
 
       services.AddSingleton<IDataAccess, SqlDataAccess>();
       services.AddSingleton<IAdventureWorksDataAccess, AdventureWorksDataAccess>();
+      services.AddApplicationInsightsTelemetry();
 
     }
 
