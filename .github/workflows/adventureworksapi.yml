@@ -8,6 +8,11 @@ jobs:
     # checkout the repo
     - uses: actions/checkout@master
     
+    # authenticate to Azure
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
@@ -21,9 +26,8 @@ jobs:
       run: |
         dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/adventureworksapi 
 
-    - name: 'Run Azure webapp deploy action using publish profile credentials'
+    - name: 'Run Azure webapp deploy action'
       uses: azure/webapps-deploy@v1
       with: 
-        app-name: adventureworksapi # Replace with your app name
-        credentials: ${{ secrets.AZURE_CREDENTIALS }} # Define secret variable in repository settings as per action documentation
+        app-name: adventureworksapi 
         package: ${{env.DOTNET_ROOT}}/adventureworksapi 
