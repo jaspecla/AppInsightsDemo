@@ -14,9 +14,9 @@ namespace AppInsightsDemo.API.DataAccess
   {
     protected string ConnectionString { get; set; }
 
-    public SqlDataAccess(IOptions<DatabaseOptions> dbOptions)
+    public SqlDataAccess(IOptions<ConnectionStringOptions> connStringOptions)
     {
-      this.ConnectionString = dbOptions.Value.ConnectionString;
+      this.ConnectionString = connStringOptions.Value.AdventureWorks;
     }
 
     protected async Task<SqlConnection> GetConnectionAsync()

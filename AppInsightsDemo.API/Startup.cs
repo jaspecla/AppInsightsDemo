@@ -29,7 +29,7 @@ namespace AppInsightsDemo.API
     {
       services.AddControllers();
 
-      services.Configure<DatabaseOptions>(Configuration.GetSection("Database"));
+      services.Configure<ConnectionStringOptions>(Configuration.GetSection("ConnectionStrings"));
 
       services.AddSingleton<IDataAccess, SqlDataAccess>();
       services.AddSingleton<IAdventureWorksDataAccess, AdventureWorksDataAccess>();

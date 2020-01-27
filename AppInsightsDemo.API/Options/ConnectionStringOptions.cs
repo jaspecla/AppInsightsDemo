@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace AppInsightsDemo.API.Options
 {
-  public class DatabaseOptions
+  public class ConnectionStringOptions
   {
-    public string ConnectionString { get; set; }
+    public string AdventureWorks { get; set; }
   }
 }
