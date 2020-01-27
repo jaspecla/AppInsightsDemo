@@ -41,14 +41,9 @@ namespace AppInsightsDemo.API.DataAccess
       return parameterObject;
     }
 
-    public DbParameter GetParameterOut(string parameter, SqlDbType type, object value = null, ParameterDirection parameterDirection = ParameterDirection.InputOutput)
+    public DbParameter GetParameterOut(string parameter, DbType type, object value = null, ParameterDirection parameterDirection = ParameterDirection.InputOutput)
     {
       SqlParameter parameterObject = new SqlParameter(parameter, type); ;
-
-      if (type == SqlDbType.NVarChar || type == SqlDbType.VarChar || type == SqlDbType.NText || type == SqlDbType.Text)
-      {
-        parameterObject.Size = -1;
-      }
 
       parameterObject.Direction = parameterDirection;
 
