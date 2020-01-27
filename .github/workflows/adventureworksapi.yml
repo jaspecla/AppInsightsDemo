@@ -25,5 +25,5 @@ jobs:
       uses: azure/webapps-deploy@v1
       with: 
         app-name: adventureworksapi # Replace with your app name
-        publish-profile: ${{ secrets.azureWebAppPublishProfile }} # Define secret variable in repository settings as per action documentation
+        credentials: ${{ secrets.AZURE_CREDENTIALS }} # Define secret variable in repository settings as per action documentation
         package: ${{env.DOTNET_ROOT}}/adventureworksapi 
