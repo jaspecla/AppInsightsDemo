@@ -34,6 +34,7 @@ namespace AppInsightsDemo.API.DataAccess
         product.Name = dataReader["Name"].ToString();
         product.ProductNumber = dataReader["ProductNumber"].ToString();
         product.Color = dataReader["Color"].ToString();
+        product.ListPrice = dataReader["ListPrice"].ToString();
         product.Category = dataReader["Category"].ToString();
         products.Add(product);
       }
