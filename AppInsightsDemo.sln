@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppInsightsDemo.API", "AppInsightsDemo.API\AppInsightsDemo.API.csproj", "{A815CC92-F79C-40EA-9A8D-2B0C79451244}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{970E5288-CA82-48B6-9533-03791C834F18}"
-	ProjectSection(SolutionItems) = preProject
-		.github\workflows\api.yml = .github\workflows\api.yml
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
