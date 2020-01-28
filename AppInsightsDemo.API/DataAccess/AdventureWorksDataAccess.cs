@@ -17,10 +17,16 @@ namespace AppInsightsDemo.API.DataAccess
 
     public async Task<Product> GetProductForId(string productId)
     {
-      var query = @"SELECT p.ProductID, p.Name, p.ProductNumber, p.Color, p.ListPrice, cat.Name as 'Category'
-                      FROM SalesLT.Product as p
-                      INNER JOIN SalesLT.ProductCategory as cat on p.ProductCategoryID = cat.ProductCategoryID
-                      WHERE p.ProductID = @ProductId";
+      string query;
+
+      if (productId == "720")
+      {
+        query = GetDelayedProductQuery();
+      }
+      else
+      {
+        query = GetProductQuery();
+      }
 
       var param = _dataAccess.GetParameter("@ProductId", productId);
 
@@ -43,5 +49,29 @@ namespace AppInsightsDemo.API.DataAccess
 
       return products.FirstOrDefault<Product>();
     }
+
+    private string GetProductQuery()
+    {
+      var query = @"SELECT p.ProductID, p.Name, p.ProductNumber, p.Color, p.ListPrice, cat.Name as 'Category'
+                      FROM SalesLT.Product as p
+                      INNER JOIN SalesLT.ProductCategory as cat on p.ProductCategoryID = cat.ProductCategoryID
+                      WHERE p.ProductID = @ProductId";
+
+      return query;
+
+    }
+
+    private string GetDelayedProductQuery()
+    {
+      var query = @"WAITFOR DELAY '00:00:05'
+                    SELECT p.ProductID, p.Name, p.ProductNumber, p.Color, p.ListPrice, cat.Name as 'Category'
+                      FROM SalesLT.Product as p
+                      INNER JOIN SalesLT.ProductCategory as cat on p.ProductCategoryID = cat.ProductCategoryID
+                      WHERE p.ProductID = @ProductId";
+
+      return query;
+
+    }
+
   }
 }
