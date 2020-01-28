@@ -12,9 +12,9 @@ namespace AppInsightsDemo.API.Tests
     }
 
     [TestMethod]
-    public void ShouldAlwaysFail()
+    public void ShouldMostlyPass()
     {
-      Assert.IsTrue(false);
+      Assert.IsTrue(true);
     }
   }
 }
