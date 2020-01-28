@@ -1,4 +1,5 @@
 ﻿using AppInsightsDemo.API.Models;
+using Microsoft.ApplicationInsights;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -10,13 +11,17 @@ namespace AppInsightsDemo.API.DataAccess
   public class AdventureWorksDataAccess : IAdventureWorksDataAccess
   {
     private IDataAccess _dataAccess;
-    public AdventureWorksDataAccess(IDataAccess dataAccess)
+    private TelemetryClient _telemetryClient;
+    public AdventureWorksDataAccess(IDataAccess dataAccess, TelemetryClient telemetryClient)
     {
       _dataAccess = dataAccess;
+      _telemetryClient = telemetryClient;
     }
 
     public async Task<Product> GetProductForId(string productId)
     {
+      var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+
       string query;
 
       if (productId == "720")
@@ -33,6 +38,7 @@ namespace AppInsightsDemo.API.DataAccess
       var dataReader = await _dataAccess.GetDataReaderAsync(query, new List<DbParameter> { param });
 
       var products = new List<Product>();
+
       while (await dataReader.ReadAsync())
       {
         var product = new Product();
@@ -44,6 +50,13 @@ namespace AppInsightsDemo.API.DataAccess
         product.Category = dataReader["Category"].ToString();
         products.Add(product);
       }
+
+      stopwatch.Stop();
+
+      var properties = new Dictionary<string, string> { { "ProductId", productId } };
+      var metrics = new Dictionary<string, double> { { "elapsedTime", stopwatch.ElapsedMilliseconds } };
+
+      _telemetryClient.TrackEvent("DataAccess", properties, metrics);
 
       // TODO: Warn on more than one product returned
 
@@ -63,7 +76,7 @@ namespace AppInsightsDemo.API.DataAccess
 
     private string GetDelayedProductQuery()
     {
-      var query = @"WAITFOR DELAY '00:00:05'
+      var query = @"WAITFOR DELAY '00:00:10'
                     SELECT p.ProductID, p.Name, p.ProductNumber, p.Color, p.ListPrice, cat.Name as 'Category'
                       FROM SalesLT.Product as p
                       INNER JOIN SalesLT.ProductCategory as cat on p.ProductCategoryID = cat.ProductCategoryID
