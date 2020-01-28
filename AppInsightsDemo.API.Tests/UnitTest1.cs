@@ -10,5 +10,11 @@ namespace AppInsightsDemo.API.Tests
     {
       Assert.IsTrue(true);
     }
+
+    [TestMethod]
+    public void ShouldAlwaysFail()
+    {
+      Assert.IsTrue(false);
+    }
   }
 }
