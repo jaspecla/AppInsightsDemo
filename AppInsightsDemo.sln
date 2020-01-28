@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", 
 		.github\workflows\adventureworksapi.yml = .github\workflows\adventureworksapi.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppInsightsDemo.API.Tests", "AppInsightsDemo.API.Tests\AppInsightsDemo.API.Tests.csproj", "{0B753452-4987-4905-B641-7D033CF6F06A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{A815CC92-F79C-40EA-9A8D-2B0C79451244}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A815CC92-F79C-40EA-9A8D-2B0C79451244}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A815CC92-F79C-40EA-9A8D-2B0C79451244}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B753452-4987-4905-B641-7D033CF6F06A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B753452-4987-4905-B641-7D033CF6F06A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B753452-4987-4905-B641-7D033CF6F06A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B753452-4987-4905-B641-7D033CF6F06A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
