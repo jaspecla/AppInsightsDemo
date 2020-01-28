@@ -1,4 +1,8 @@
-on: [push,pull_request]
+name: "Adventure Works API Deployment"
+on:
+  push:
+    branches: 
+      - master
 
 jobs:
   build-and-deploy:
