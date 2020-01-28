@@ -23,9 +23,11 @@ jobs:
         dotnet-version: 3.1.101 # Replace with specific dotnet core version
 
     
-    # dotnet build and publish
-    - name: Build with dotnet
+    # dotnet build, test, and publish
+    - name: dotnet build
       run: dotnet build --configuration Release
+    - name: dotnet test
+      run: dotnet test --configuration Release
     - name: dotnet publish
       run: |
         dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/adventureworksapi 
