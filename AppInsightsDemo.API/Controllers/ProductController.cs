@@ -43,6 +43,11 @@ namespace AppInsightsDemo.API.Controllers
 
       _telemetryClient.TrackEvent("GetProduct", properties, metrics);
 
+      if (productForId == null)
+      {
+        return NotFound();
+      }
+
       return Ok(productForId);
     }
   }
