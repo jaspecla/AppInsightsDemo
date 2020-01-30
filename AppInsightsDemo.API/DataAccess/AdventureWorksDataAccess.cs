@@ -53,7 +53,7 @@ namespace AppInsightsDemo.API.DataAccess
 
       stopwatch.Stop();
 
-      var properties = new Dictionary<string, string> { { "ProductId", productId } };
+      var properties = new Dictionary<string, string> { { "productId", productId } };
       var metrics = new Dictionary<string, double> { { "elapsedTime", stopwatch.ElapsedMilliseconds } };
 
       _telemetryClient.TrackEvent("DataAccess", properties, metrics);
