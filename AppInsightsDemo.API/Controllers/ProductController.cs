@@ -23,6 +23,11 @@ namespace AppInsightsDemo.API.Controllers
       _telemetryClient = telemetryClient;
     }
 
+    /// <summary>
+    /// Get a product from the AdventureWorks database.  Use product number 720 to induce a ten second delay in the database.
+    /// </summary>
+    /// <param name="productId"></param>
+    /// <returns></returns>
     [HttpGet("{productId}", Name = "GetProduct")]
     public async Task<IActionResult> GetProduct(string productId)
     {
