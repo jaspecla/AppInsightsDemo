@@ -35,11 +35,13 @@ namespace AppInsightsDemo.API
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "AdventureWorks API", Version = "v1" });
       });
 
+
       services.Configure<ConnectionStringOptions>(Configuration.GetSection("ConnectionStrings"));
 
       services.AddSingleton<IDataAccess, SqlDataAccess>();
       services.AddSingleton<IAdventureWorksDataAccess, AdventureWorksDataAccess>();
       services.AddApplicationInsightsTelemetry();
+      services.AddServiceProfiler();
 
     }
 
