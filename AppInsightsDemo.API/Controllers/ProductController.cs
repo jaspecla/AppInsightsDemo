@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AppInsightsDemo.API.DataAccess;
+using AppInsightsDemo.API.Models;
 using AppInsightsDemo.API.Options;
 using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Http;
@@ -24,7 +25,7 @@ namespace AppInsightsDemo.API.Controllers
     }
 
     /// <summary>
-    /// Get a product from the AdventureWorks database.  Use product number 720 to induce a ten second delay in the database.
+    /// Get a product from the AdventureWorks database.  Use product number 720 to induce a ten second delay in the database.  Use product number 707 to induce a ten second delay in code.
     /// </summary>
     /// <param name="productId"></param>
     /// <returns></returns>
@@ -37,6 +38,11 @@ namespace AppInsightsDemo.API.Controllers
       var stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
       var productForId = await _dataAccess.GetProductForId(productId);
+
+      if (productId == "707")
+      {
+        await Task.Delay(10000);
+      }
 
       stopwatch.Stop();
       var metrics = new Dictionary<string, double>() { { "elapsedTime", stopwatch.ElapsedMilliseconds } };
