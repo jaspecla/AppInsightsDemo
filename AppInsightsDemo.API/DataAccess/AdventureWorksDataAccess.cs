@@ -28,6 +28,10 @@ namespace AppInsightsDemo.API.DataAccess
       {
         query = GetDelayedProductQuery();
       }
+      else if (productId == "999")
+      {
+        throw new ArgumentException("This is a bad product ID.", "productId");
+      }
       else
       {
         query = GetProductQuery();
