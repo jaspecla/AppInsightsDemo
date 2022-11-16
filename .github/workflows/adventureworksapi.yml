@@ -35,5 +35,5 @@ jobs:
     - name: 'Run Azure webapp deploy action'
       uses: azure/webapps-deploy@v1
       with: 
-        app-name: app-insights-demo-jaspecla 
+        app-name: app-insights-demo-webapp 
         package: ${{env.DOTNET_ROOT}}/adventureworksapi 
