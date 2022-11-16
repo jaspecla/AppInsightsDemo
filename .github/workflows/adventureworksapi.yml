@@ -17,12 +17,6 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.101 # Replace with specific dotnet core version
-
-    
     # dotnet build, test, and publish
     - name: dotnet build
       run: dotnet build --configuration Release
